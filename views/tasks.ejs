@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>TO DO LIST</h1>
+        <form action="/tasks" method="POST">
+            <input class="titleInput" type="text" name="title" placeholder="Enter task title" required
+                autocomplete="false">
+            <input type="text" class="DescInput" name="description" placeholder="Enter task description" required
+                autocomplete="false">
+            <input min="2024-05-26" type="date" class="dateInput" name="dueDate" required value="2024-05-26">
+            <button id="newTaskBtn" type="submit">Add Task</button>
+        </form>
+        <ul <% if (tasks.length===0) { %>
+            style="display:none;"
+            <% } %> >
+                <% tasks.forEach(task=> { %>
+                    <li>
+                        <div>
+                            <h4>
+                                <%= task.title %>
+                            </h4>
+                            <p style="margin-bottom:5px; font-size: 1.1rem;">
+                                <%= task.description %>
+                            </p>
+                            <p style="font-weight: 600; font-size: 0.8rem;">
+                                Status: <%= task.status %>
+                            </p>
+                            <h6 style="font-weight: 600; font-size: 0.8rem;">Due Date: <date>
+                                    <%= task.dueDate %>
+                                </date>
+                            </h6>
+                        </div>
+                        <div>
+                            <a class="TaskBtns" href="<%=fullURL%>/tasks/<%=task.id%>"><i><svg
+                                        xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M 19.171875 2 C 18.448125 2 17.724375 2.275625 17.171875 2.828125 L 16 4 L 20 8 L 21.171875 6.828125 C 22.275875 5.724125 22.275875 3.933125 21.171875 2.828125 C 20.619375 2.275625 19.895625 2 19.171875 2 z M 14.5 5.5 L 3 17 L 3 21 L 7 21 L 18.5 9.5 L 14.5 5.5 z">
+                                        </path>
+                                    </svg></i></a>
+                            <form action="/tasks/<%= task.id %>?_method=DELETE" method="post">
+
+                                <button class="TaskBtns" type="submit"><i><svg xmlns="http://www.w3.org/2000/svg"
+                                            x="0px" y="0px" width="100" height="100" viewBox="0 0 24 24">
+                                            <path
+                                                d="M 10.806641 2 C 10.289641 2 9.7956875 2.2043125 9.4296875 2.5703125 L 9 3 L 4 3 A 1.0001 1.0001 0 1 0 4 5 L 20 5 A 1.0001 1.0001 0 1 0 20 3 L 15 3 L 14.570312 2.5703125 C 14.205312 2.2043125 13.710359 2 13.193359 2 L 10.806641 2 z M 4.3652344 7 L 5.8925781 20.263672 C 6.0245781 21.253672 6.877 22 7.875 22 L 16.123047 22 C 17.121047 22 17.974422 21.254859 18.107422 20.255859 L 19.634766 7 L 4.3652344 7 z">
+                                            </path>
+                                        </svg></i></button>
+                            </form>
+
+                        </div>
+                    </li>
+                    <% }) %>
+        </ul>
+    </div>
+</body>
+
+</html>

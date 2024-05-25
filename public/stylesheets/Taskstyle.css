@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #cde8e5;
+}
+
+.container {
+  max-width: 1170px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 20px;
+}
+.container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+input[type="text"] {
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+}
+.dateInput {
+  font-weight: 500;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+}
+button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  background-color: #4d869c;
+  color: #fff;
+  transition: 0.2s ease-in-out;
+  font-size: 1rem;
+  cursor: pointer;
+}
+button:hover {
+  font-weight: 500;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  color: #000;
+  background-color: #7ab2b2;
+  transition: 0.2s ease-in-out;
+}

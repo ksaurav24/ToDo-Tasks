@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #cde8e5;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.container {
+  max-width: 1170px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 20px;
+}
+.container h1 {
+  margin: 12px;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+input[type="text"] {
+  font-size: 0.9rem;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #eef7ff;
+  font-weight: 500;
+}
+
+.dateInput {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-weight: 500;
+  border: 1px solid #eef7ff;
+}
+#newTaskBtn {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  background-color: #4d869c;
+  color: #eef7ff;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s ease-in-out;
+}
+#newTaskBtn:hover {
+  font-weight: 500;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  color: #000;
+  background-color: #7ab2b2;
+  transition: 0.2s ease-in-out;
+}
+.container ul {
+  list-style: none;
+  padding: 10px;
+  background-color: #7ab2b2;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.container ul li {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-left: 6px;
+  margin: 10px 0;
+  background-color: #cde8e5;
+  padding: 10px;
+  border-radius: 5px;
+}
+.TaskBtns {
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  height: fit-content;
+  width: fit-content;
+  padding: 4px;
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #7ab2b2;
+  transition: 0.2s ease-in-out;
+}
+.TaskBtns:hover {
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  background-color: #4d869c;
+  color: #eef7ff;
+}
+.container ul li svg {
+  width: 18px;
+  height: 18px;
+  /* background: #000; */
+  overflow: hidden;
+}
+.container ul li h4 {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+}
+.container ul li h6 {
+  font-size: 0.8rem;
+  margin-top: 6px;
+}
