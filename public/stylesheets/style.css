@@ -100,7 +100,6 @@ input[type="text"] {
 .container ul li svg {
   width: 18px;
   height: 18px;
-  /* background: #000; */
   overflow: hidden;
 }
 .container ul li h4 {
@@ -120,7 +119,6 @@ input[type="text"] {
   bottom: 0;
   margin: 10px;
   padding: 4px;
-  /* background-color: #7ab2b2; */
   border-radius: 50%;
   width: 40px;
   height: 40px;
