@@ -3,7 +3,7 @@ const app = express();
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 const methodOverride = require("method-override");
-const port = 3000;
+const port = process.env.PORT || 3030;
 
 app.use(methodOverride("_method"));
 
