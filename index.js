@@ -15,14 +15,14 @@ if (typeof localStorage === "undefined" || localStorage === null) {
   var LocalStorage = require("node-localstorage").LocalStorage;
   localStorage = new LocalStorage("./scratch");
 }
-let tasks = [];
-localStorage.setItem("tasks", JSON.stringify(tasks));
 
 app.get("/", (req, res) => {
   res.redirect("/tasks");
 });
 
 app.get("/tasks", (req, res) => {
+  let tasks = [];
+  localStorage.setItem("tasks", JSON.stringify(tasks));
   const fullURL = `${req.protocol}://${req.get("host")}`;
   let renderTasks = localStorage.getItem("tasks");
   let Tasks = JSON.parse(renderTasks);
