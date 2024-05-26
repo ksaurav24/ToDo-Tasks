@@ -37,9 +37,11 @@ app.post("/tasks", (req, res) => {
     status: "pending",
     dueDate: req.body.dueDate,
   };
-  tasks.push(task);
+  let renderTasks = localStorage.getItem("tasks");
+  const Tasks = JSON.parse(renderTasks);
+  Tasks.push(task);
   localStorage.removeItem("tasks");
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem("tasks", JSON.stringify(Tasks));
   res.redirect("/");
 });
 
