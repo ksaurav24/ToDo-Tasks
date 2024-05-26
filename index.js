@@ -3,7 +3,7 @@ const app = express();
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 const methodOverride = require("method-override");
-const port = 3000;
+const port = process.env.PORT || 3030;
 
 app.use(methodOverride("_method"));
 
@@ -11,7 +11,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
-let { tasks } = require("./data.js");
+if (typeof localStorage === "undefined" || localStorage === null) {
+  var LocalStorage = require("node-localstorage").LocalStorage;
+  localStorage = new LocalStorage("./scratch");
+}
+let tasks = [];
+localStorage.setItem("tasks", JSON.stringify(tasks));
 
 app.get("/", (req, res) => {
   res.redirect("/tasks");
@@ -19,7 +24,9 @@ app.get("/", (req, res) => {
 
 app.get("/tasks", (req, res) => {
   const fullURL = `${req.protocol}://${req.get("host")}`;
-  res.render("tasks", { tasks: tasks, fullURL: fullURL });
+  let renderTasks = localStorage.getItem("tasks");
+  let Tasks = JSON.parse(renderTasks);
+  res.render("tasks", { tasks: Tasks, fullURL: fullURL });
 });
 
 app.post("/tasks", (req, res) => {
@@ -31,25 +38,35 @@ app.post("/tasks", (req, res) => {
     dueDate: req.body.dueDate,
   };
   tasks.push(task);
+  localStorage.removeItem("tasks");
+  localStorage.setItem("tasks", JSON.stringify(tasks));
   res.redirect("/");
 });
 
 app.get("/tasks/:id", (req, res) => {
-  const task = tasks.find((task) => task.id === req.params.id);
+  let renderTasks = localStorage.getItem("tasks");
+  const Tasks = JSON.parse(renderTasks);
+  const task = Tasks.find((task) => task.id === req.params.id);
   res.render("task", { task: task });
 });
 
 app.delete("/tasks/:id", (req, res) => {
+  localStorage.removeItem("tasks");
   tasks = tasks.filter((task) => task.id !== req.params.id);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
   res.redirect("/");
 });
 
 app.put("/tasks/:id", (req, res) => {
-  const task = tasks.find((task) => task.id === req.params.id);
+  let renderTasks = localStorage.getItem("tasks");
+  const Tasks = JSON.parse(renderTasks);
+  const task = Tasks.find((task) => task.id === req.params.id);
   task.title = req.body.title;
   task.description = req.body.description;
   task.dueDate = req.body.dueDate;
   task.status = req.body.status;
+  localStorage.removeItem("tasks");
+  localStorage.setItem("tasks", JSON.stringify(Tasks));
   res.redirect("/");
 });
 

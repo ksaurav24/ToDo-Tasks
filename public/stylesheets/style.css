@@ -111,3 +111,22 @@ input[type="text"] {
   font-size: 0.8rem;
   margin-top: 6px;
 }
+.githubBtnCon {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
+  padding: 4px;
+  /* background-color: #7ab2b2; */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+}
+.githubBtn {
+  width: 45px;
+  height: 45px;
+}
