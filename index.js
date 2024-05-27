@@ -11,19 +11,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
-if (typeof localStorage === "undefined" || localStorage === null) {
-  var LocalStorage = require("node-localstorage").LocalStorage;
-  localStorage = new LocalStorage("./scratch");
-}
+let Tasks = [];
 
-let tasks = [];
 app.get("/", (req, res) => {
   res.redirect("/tasks");
 });
 app.get("/tasks", (req, res) => {
   const fullURL = `${req.protocol}://${req.get("host")}`;
-  let renderTasks = localStorage.getItem("tasks");
-  let Tasks = JSON.parse(renderTasks);
   res.render("tasks", { tasks: Tasks, fullURL: fullURL });
 });
 
@@ -35,38 +29,26 @@ app.post("/tasks", (req, res) => {
     status: "pending",
     dueDate: req.body.dueDate,
   };
-  let renderTasks = localStorage.getItem("tasks");
-  const Tasks = JSON.parse(renderTasks);
   Tasks.push(task);
-  localStorage.removeItem("tasks");
-  localStorage.setItem("tasks", JSON.stringify(Tasks));
   res.redirect("/");
 });
 
 app.get("/tasks/:id", (req, res) => {
-  let renderTasks = localStorage.getItem("tasks");
-  const Tasks = JSON.parse(renderTasks);
   const task = Tasks.find((task) => task.id === req.params.id);
   res.render("task", { task: task });
 });
 
 app.delete("/tasks/:id", (req, res) => {
-  localStorage.removeItem("tasks");
-  tasks = tasks.filter((task) => task.id !== req.params.id);
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  Tasks = Tasks.filter((task) => task.id !== req.params.id);
   res.redirect("/");
 });
 
 app.put("/tasks/:id", (req, res) => {
-  let renderTasks = localStorage.getItem("tasks");
-  const Tasks = JSON.parse(renderTasks);
   const task = Tasks.find((task) => task.id === req.params.id);
   task.title = req.body.title;
   task.description = req.body.description;
   task.dueDate = req.body.dueDate;
   task.status = req.body.status;
-  localStorage.removeItem("tasks");
-  localStorage.setItem("tasks", JSON.stringify(Tasks));
   res.redirect("/");
 });
 
