@@ -26,7 +26,8 @@
                 autocomplete="false">
             <input type="text" class="DescInput" name="description" placeholder="Enter task description" required
                 autocomplete="false">
-            <input min="2024-05-26" type="date" class="dateInput" name="dueDate" required value="2024-05-26">
+            <input min="<%= new Date().toISOString().split('T')[0] %>" type="date" class="dateInput" name="dueDate"
+                required value="<%=new Date().toISOString().split('T')[0] %>">
             <button id="newTaskBtn" type="submit">Add Task</button>
         </form>
         <ul <% if (tasks.length===0) { %>

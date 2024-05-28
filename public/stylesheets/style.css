@@ -128,3 +128,35 @@ input[type="text"] {
   width: 45px;
   height: 45px;
 }
+#goBackBtn {
+  width: 200px;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  background-color: #4d869c;
+  color: #eef7ff;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s ease-in-out;
+}
+#goBackBtn a {
+  text-decoration: none;
+  color: #eef7ff;
+}
+#goBackBtn:hover {
+  font-weight: 500;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  color: #000;
+  background-color: #7ab2b2;
+}
+#errorCon {
+  width: 100vw;
+  height: 100vh;
+  gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 5px;
+}

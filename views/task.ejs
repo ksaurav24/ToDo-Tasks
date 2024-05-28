@@ -20,8 +20,8 @@
                 <label for="description">Description:</label>
                 <input type="text" name="description" value="<%= task.description %>" required autocomplete="false">
                 <label for="dueDate">Due Date:</label>
-                <input min="2024-05-26" class="dateInput" type="date" name="dueDate" value="<%= task.dueDate %>"
-                    autocomplete="false" required>
+                <input min="<%= new Date().toISOString().split('T')[0] %>" class="dateInput" type="date" name="dueDate"
+                    value="<%= task.dueDate %>" autocomplete="false" required>
                 <label for="status">Status:</label>
                 <select class="dateInput" id="statusInput" name="status" aria-placeholder="Select status">
                     <option value="pending">Pending</option>

@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 const methodOverride = require("method-override");
+const date = require("date-and-time");
 const port = process.env.PORT || 3030;
 
 app.use(methodOverride("_method"));
@@ -34,8 +35,15 @@ app.post("/tasks", (req, res) => {
 });
 
 app.get("/tasks/:id", (req, res) => {
-  const task = Tasks.find((task) => task.id === req.params.id);
-  res.render("task", { task: task });
+  try {
+    const task = Tasks.find((task) => task.id === req.params.id);
+    if (!task) {
+      throw new Error("Task not found");
+    }
+    res.render("task", { task: task });
+  } catch (error) {
+    res.status(500).render("error", { error: error.message });
+  }
 });
 
 app.delete("/tasks/:id", (req, res) => {
@@ -44,14 +52,21 @@ app.delete("/tasks/:id", (req, res) => {
 });
 
 app.put("/tasks/:id", (req, res) => {
-  const task = Tasks.find((task) => task.id === req.params.id);
-  task.title = req.body.title;
-  task.description = req.body.description;
-  task.dueDate = req.body.dueDate;
-  task.status = req.body.status;
-  res.redirect("/");
+  try {
+    const task = Tasks.find((task) => task.id === req.params.id);
+    if (!task) {
+      throw new Error("Invalid task id");
+    }
+    task.title = req.body.title;
+    task.description = req.body.description;
+    task.dueDate = req.body.dueDate;
+    task.status = req.body.status;
+    res.redirect("/");
+  } catch (error) {
+    res.status(500).render("error", { error: error.message });
+  }
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Server is running on port ${port}`);
 });
