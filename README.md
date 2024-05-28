@@ -28,13 +28,13 @@ This is a simple ToDo application built using Node.js, Express.js, HTML, CSS, an
     Open your terminal and run the following command to clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/todo-website.git
+    git clone https://github.com/ksaurav24/ToDo-Tasks
     ```
 
 2. **Navigate to the project directory**
 
     ```bash
-    cd todo-website
+    cd ToDo-Tasks
     ```
 
 3. **Install dependencies**
